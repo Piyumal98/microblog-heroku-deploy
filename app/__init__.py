@@ -13,8 +13,20 @@ from elasticsearch import Elasticsearch
 from redis import Redis
 import rq
 from config import Config
+import pyrebase
 
-db = SQLAlchemy()
+config = {
+    "apiKey": "AIzaSyCYrfTOkUZimBn9HRbltFqFQKM1GYKrYVA",
+    "authDomain": "microblog-d38ee.firebaseapp.com",
+    "databaseURL": "https://microblog-d38ee-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "projectId": "microblog-d38ee",
+    "storageBucket": "microblog-d38ee.appspot.com",
+    "messagingSenderId": "1035427908270",
+    "appId": "1:1035427908270:web:a5d59451938b22dd93fb3f",
+    "measurementId": "G-CH72PCCX99"
+}
+firebase = pyrebase.initialize_app(config)
+db = firebase.database() 
 migrate = Migrate()
 login = LoginManager()
 login.login_view = 'auth.login'
